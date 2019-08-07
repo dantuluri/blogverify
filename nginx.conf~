@@ -4,7 +4,11 @@ server {
 
     location / {
         root   /usr/share/nginx/html;
-        index  loaderio-5720f82907e69821f675c0797437f1d.html;
+        index  index.html index.htm;
+    if ($request_uri ~ ^/(.*)\.html$) {
+        return 302 /$1;
+    }
+    try_files $uri $uri.html $uri/ =404;
 }
 
 location /loaderio-5720f82907e69821f675c0797437f1d9 {
